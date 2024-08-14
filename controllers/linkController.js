@@ -1,4 +1,5 @@
 const Link = require("../models/linkModels")
+const User = require("../models/userModels")
 
 exports.shortenLink = async (req, res) => {
     try {
@@ -15,8 +16,8 @@ exports.shortenLink = async (req, res) => {
             slug = Math.random().toString(36).slice(2, 10);
         }
 
-        const newLink = new Link({ originalUrl, slug })
-
+        const user = await User.findById(req.user.userId);
+        const newLink = new Link({ originalUrl, slug, user });
         await newLink.save();
 
         return res
