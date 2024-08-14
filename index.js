@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const { connectDb } = require("./config/database");
 const userRouter = require("./routes/user.Routes");
+const linkRouter = require("./routes/link.Routes")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,8 @@ connectDb();
 app.use(express.json());
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/link", linkRouter);
+
 
 app.get("/", (req, res) => {
     res.send('Hello World!');

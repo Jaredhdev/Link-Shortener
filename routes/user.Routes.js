@@ -1,6 +1,6 @@
 const express = require("express");
 const { signUp, login } = require("../controllers/userController");
-const {verifyToken} = require("../config/isAuth");
+const { verifyToken } = require("../config/isAuth");
 const router = express.Router();
 
 router.post("/signup", signUp);
