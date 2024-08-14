@@ -17,8 +17,12 @@ exports.shortenLink = async (req, res) => {
         }
 
         const user = await User.findById(req.user.userId);
+
         const newLink = new Link({ originalUrl, slug, user });
         await newLink.save();
+
+        user.links.push(newLink);
+        await user.save();
 
         return res
             .status(201)
